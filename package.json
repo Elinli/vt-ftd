@@ -12,7 +12,7 @@
     "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,css,scss,postcss,less}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:all": "npm run lint:eslint && npm run lint:stylelint",
     "prepare": "husky install",
-    "lint:lint-staged": "lint-staged"
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js"
   },
   "dependencies": {
     "pinia": "^2.0.8",
@@ -53,11 +53,6 @@
     "vite": "^2.7.2",
     "vue-eslint-parser": "^8.0.1",
     "vue-tsc": "^0.29.8"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
