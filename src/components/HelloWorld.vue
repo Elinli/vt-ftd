@@ -34,4 +34,14 @@
   </p>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  a {
+    color: red;
+  }
+  p {
+    color: blue;
+    code {
+      font-size: 24px;
+    }
+  }
+</style>
