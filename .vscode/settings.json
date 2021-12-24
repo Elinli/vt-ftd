@@ -9,7 +9,7 @@
   // vscode重命名文件或移动文件自动更新导入路径
   "typescript.updateImportsOnFileMove.enabled": "always",
   // 自动替换为当前项目的内置的typescript版本
-  "typescript.tsdk": "./node_modeles/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   // 一个制表符占的空格数(可能会被覆盖)
   "editor.tabSize": 2,
   // 定义一个默认和的格式程序 (prettier)
