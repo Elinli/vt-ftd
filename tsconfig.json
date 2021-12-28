@@ -17,6 +17,7 @@
     "allowJs": true,
     "useDefineForClassFields": true,
     "types": ["vite/client", "element-plus/global"],
+    "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
