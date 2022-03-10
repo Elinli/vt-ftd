@@ -5,18 +5,18 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { Icon } from './Icon'
-  export default defineComponent({
-    components: {
-      Icon,
-    },
-    setup(props) {
-      const getIcon = computed(() => props.item?.icon)
-      const getTitleName = computed(() => props.item.title)
-      return { getIcon, getTitleName }
+<script lang="ts" setup>
+  import { computed, defineProps } from 'vue'
+  import { useIcon } from '/@/hooks/components/useIcons'
+  const { Icon } = useIcon()
+  defineProps({
+    item: {
+      type: Object,
+      default: () => ({}),
     },
   })
+  const getIcon = computed(() => item.icon)
+  const getTitleName = computed(() => item.title)
 </script>
 
 <style scoped lang="less"></style>

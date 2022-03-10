@@ -5,7 +5,7 @@ export interface IconProps {
 export interface Menu {
   name: string
   path: string
-  icon: string
+  icon: string | undefined | null
   children?: Array<Menu>
   hideChildren: boolean
   uniqueId: string | number

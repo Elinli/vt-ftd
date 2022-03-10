@@ -16,7 +16,7 @@
     "lib": ["esnext", "dom"],
     "allowJs": true,
     "useDefineForClassFields": true,
-    "types": ["vite/client", "element-plus/global"],
+    "types": ["vite/client", "element-plus/global", "node"],
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": true,
     "baseUrl": ".",
