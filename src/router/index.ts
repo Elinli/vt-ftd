@@ -1,4 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { useRouterConfig } from '../hooks/components/useRouterConfig'
+import { Menu } from '../interface/app'
+import { fetchMenuData } from './staticMenu'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -12,18 +15,7 @@ const routes: RouteRecordRaw[] = [
     },
     component: () => import(/* webpackChunkName: "login" */ '/src/views/login/index.vue'),
   },
-  {
-    path: '/workbench',
-    redirect: '/chart',
-  },
-  // {
-  //   path: '/dashboard',
-  //   name: 'Dashboard',
-  //   meta: {
-  //     title: '平台中心',
-  //   },
-  //   component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue'),
-  // },
+
   // {
   //   path: '/error-page',
   //   name: 'ErrorPage',
@@ -38,6 +30,15 @@ const router = createRouter({
   history: createWebHashHistory('/'),
   routes,
 })
-console.log(router)
+router.beforeEach((to, from, next) => {
+  console.log(router.getRoutes())
+  console.log({ to, from, next })
+  // next(to.path)
+  next()
+})
+
+fetchMenuData().then((menu) => {
+  useRouterConfig(router, menu as Menu[])
+})
 
 export default router

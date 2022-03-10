@@ -1,55 +1,44 @@
 import { Router, RouteRecordRaw } from 'vue-router'
-// import { modules } from '/@/router/modules'
-const modules = import.meta.glob('../../router/modules/*.ts')
-export function useRouterConfig(router: Router) {
-  // const promiseImport = filenames.map((filename) => import(`/@/router/modules/${filename}`))
-  // return Promise.all(promiseImport).then(async (values) => {
-  // console.log(values)
-  // values.forEach((item) => {
-  //   console.log(item.routes)
-  //   routesTotal.push(item.routes)
-  // })
-  console.log(modules)
-  const routesImport = []
+import { Menu } from '../../interface/app'
+export function useRouterConfig(router: Router, menu: Array<Menu>) {
+  const dynamicImport = import.meta.glob('../../views/**/*.vue')
+  const resultMenu: RouteRecordRaw[] = addComponentToMenuItem(menu, dynamicImport)
 
-  for (const key in modules) {
-    routesImport.push(modules[key]())
+  const rootRoutes: RouteRecordRaw = {
+    path: '/layouts',
+    redirect: '/dashborad',
+    name: 'Layouts',
+    meta: {},
+    component: () => import('../../components/Layouts/index.vue'),
+    children: resultMenu,
   }
-  console.log(routesImport)
-  const ddd: RouteRecordRaw[] = []
-  Promise.all(routesImport).then(async (values) => {
-    console.log(values)
-    values.forEach((item) => {
-      console.log(item.routes)
-      item.routes && ddd.push(item.routes)
-    })
-    const rootRoutes: RouteRecordRaw = {
-      path: '/workbench',
-      redirect: '/chart',
-      name: 'Workbench',
-      meta: {},
-      children: [...ddd],
+
+  router.addRoute(rootRoutes)
+}
+
+export function addComponentToMenuItem(
+  menu: Menu[],
+  dynamicImport: Record<string, () => Promise<{ [key: string]: any }>>,
+): Array<RouteRecordRaw> {
+  return menu.map((item) => {
+    const { children, path, ...rest } = item
+    console.log(`../../views${path}/index.vue`)
+
+    const route: RouteRecordRaw = {
+      path,
+      meta: {
+        title: rest.title,
+        parent: rest.parent,
+      },
+      ...rest,
+      component:
+        children && children.length
+          ? dynamicImport[`../../views/default/index.vue`]
+          : dynamicImport[`../../views${path}/index.vue`],
     }
-    console.log(rootRoutes)
-
-    await router.addRoute(rootRoutes)
-    setTimeout(() => {
-      router.push({ path: '/chart' })
-    })
+    if (children && children.length) {
+      route.children = addComponentToMenuItem(children, dynamicImport) as [RouteRecordRaw]
+    }
+    return route
   })
-  console.log(11)
-
-  // const rootRoutes: RouteRecordRaw = {
-  //   path: '/workbench',
-  //   redirect: '/chart',
-  //   name: 'Workbench',
-  //   meta: {},
-  //   children: [],
-  // }
-  console.log(22)
-
-  // const { routes } = value
-  // console.log(rootRoutes)
-
-  // router.addRoute(rootRoutes)
 }
