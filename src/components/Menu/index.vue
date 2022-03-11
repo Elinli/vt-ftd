@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="menu-tree">
     <el-menu>
       <template v-for="menuItem in menuData" :key="menuItem.path">
         <RenderMenu :menuItem="menuItem" />
       </template>
-      /></el-menu
-    >
+    </el-menu>
   </div>
 </template>
 <script lang="ts" setup>

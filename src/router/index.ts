@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: '登陆',
     },
-    component: () => import(/* webpackChunkName: "login" */ '/src/views/login/index.vue'),
+    component: () => import('/src/views/login/index.vue'),
   },
 
   // {
@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
   //   meta: {
   //     title: '错误页面',
   //   },
-  //   component: () => import(/* webpackChunkName: "error" */ '../views/ErrorPage.vue'),
+  //   component: () => import( '../views/ErrorPage.vue'),
   // },
 ]
 
