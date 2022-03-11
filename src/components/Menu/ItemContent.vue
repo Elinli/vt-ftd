@@ -1,22 +1,25 @@
 <template>
-  <div class="icon">
+  <div class="item-content">
     <Icon :icon="getIcon" />
-    {{ getTitleName }}
+    <span> {{ getTitleName }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { computed, defineProps } from 'vue'
+  import { computed, defineProps, toRaw } from 'vue'
   import { useIcon } from '/@/hooks/components/useIcons'
   const { Icon } = useIcon()
-  defineProps({
+  const props = defineProps({
     item: {
       type: Object,
       default: () => ({}),
     },
   })
-  const getIcon = computed(() => item.icon)
-  const getTitleName = computed(() => item.title)
+  let iteme = toRaw(toRaw(props).item)
+  console.log(iteme)
+
+  const getIcon = computed(() => iteme.icon)
+  const getTitleName = computed(() => iteme.title)
 </script>
 
 <style scoped lang="less"></style>

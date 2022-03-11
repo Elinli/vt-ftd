@@ -10,7 +10,7 @@ export const useIcon = () => {
   }
   const Icon = (props: IconProps) => {
     const { icon } = props
-    return createVNode(Icons[icon])
+    return icon && createVNode(Icons[icon])
   }
   return {
     setupIcons,
