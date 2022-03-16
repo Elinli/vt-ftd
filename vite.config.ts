@@ -41,4 +41,13 @@ export default defineConfig({
   //     jsxFragment: 'Fragment',
   //     jsxInject: 'import { h } from "vue";',
   //   },
+  css: {
+    // css预处理器
+    preprocessorOptions: {
+      scss: {
+        charset: false,
+        additionalData: '@import "./src/assets/default/common.scss";',
+      },
+    },
+  },
 })

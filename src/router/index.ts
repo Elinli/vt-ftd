@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { useRouterConfig } from '../hooks/components/useRouterConfig'
 import { Menu } from '../interface/app'
-import { fetchMenuData } from './staticMenu'
+import { staticMenu } from './staticMenu'
+import { routerBeforeEach } from './beforeEach'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -16,29 +17,42 @@ const routes: RouteRecordRaw[] = [
     component: () => import('/src/views/login/index.vue'),
   },
 
-  // {
-  //   path: '/error-page',
-  //   name: 'ErrorPage',
-  //   meta: {
-  //     title: '错误页面',
-  //   },
-  //   component: () => import( '../views/ErrorPage.vue'),
-  // },
+  {
+    path: '/404',
+    name: '404',
+    meta: {
+      title: '错误页面',
+    },
+    component: () => import('/src/views/errorpage/index.vue'),
+  },
+  {
+    path: '/403',
+    name: '403',
+    meta: {
+      title: '错误页面',
+    },
+    component: () => import('/src/views/errorpage/index.vue'),
+  },
+  {
+    path: '/500',
+    name: '500',
+    meta: {
+      title: '错误页面',
+    },
+    component: () => import('/src/views/errorpage/index.vue'),
+  },
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHashHistory('/'),
   routes,
-})
-router.beforeEach((to, from, next) => {
-  console.log(router.getRoutes())
-  console.log({ to, from, next })
-  // next(to.path)
-  next()
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
-fetchMenuData().then((menu) => {
-  useRouterConfig(router, menu as Menu[])
-})
+routerBeforeEach(router)
+
+useRouterConfig(router, staticMenu as Menu[])
 
 export default router

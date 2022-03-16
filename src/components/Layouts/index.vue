@@ -1,46 +1,53 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header><h1>hello v3</h1></el-header>
+      <Header />
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
+        <!-- <el-aside width="200px">Aside</el-aside> -->
+        <Aside />
         <el-main>
-          <div> <router-view /> </div>
+          <div class="page-router-view"> <router-view /> </div>
         </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import { watchEffect, toRaw } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
+  import Header from './Header.vue'
+  import Aside from './Aside.vue'
+
+  const route = useRoute()
+  const router = useRouter()
+
+  watchEffect(() => {
+    console.log('route', toRaw(route))
+    console.log('router', toRaw(router).currentRoute.value.path)
+    console.log('watchEffect')
+  })
+</script>
 
 <style scoped lang="scss">
-  .common-layout .el-header,
-  .common-layout .el-footer {
-    background-color: #b3c0d1;
-    color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 60px;
-  }
-  .common-layout .el-footer {
-    line-height: 60px;
-  }
-
-  .common-layout .el-aside {
-    background-color: #d3dce6;
-    color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 200px;
+  .common-layout {
+    background: $primary-color;
   }
 
   .common-layout .el-main {
     background-color: #e9eef3;
     color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 160px;
   }
 
   .common-layout > .el-container {
-    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .page-router-view {
+    background: white;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
   }
 </style>

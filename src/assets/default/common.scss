@@ -1,0 +1,48 @@
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li {
+  padding: 0px;
+  margin: 0px;
+}
+
+html,
+body,
+#app {
+  height: calc(100vh - 0px);
+}
+
+$p4: 4px;
+$p8: 8px;
+$p12: 12px;
+$p14: 14px;
+$p16: 16px;
+$p24: 24px;
+$p28: 28px;
+$p32: 32px;
+$p40: 40px;
+$p48: 48px;
+$p64: 64px;
+$p96: 96px;
+
+$r2: 2px;
+$r4: 4px;
+$r8: 8px;
+$rp50: 50%;
+
+$font-family: 'Open Sans', sans-serif;
+$font-size: $p14;
+
+$primary-color: #00a0e9;
+$warning-color: #ffc107;
+$error-color: #f44336;
+$success-color: #4caf50;
+$disabled-color: #e0e0e0;

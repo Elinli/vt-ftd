@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <Menu />
-  </div>
+  <div> index </div>
 </template>
 
-<script lang="ts" setup>
-  import Menu from '/@/components/Menu/Index.vue'
-</script>
+<script lang="ts" setup></script>
 
 <style scoped lang="scss"></style>

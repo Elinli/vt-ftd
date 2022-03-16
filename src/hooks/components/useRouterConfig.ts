@@ -1,7 +1,7 @@
 import { Router, RouteRecordRaw } from 'vue-router'
 import { Menu } from '../../interface/app'
 export function useRouterConfig(router: Router, menu: Array<Menu>) {
-  const dynamicImport = import.meta.glob('../../views/**/*.vue')
+  const dynamicImport = import.meta.glob('../../views/**/*.{vue,tsx}')
   const resultMenu: RouteRecordRaw[] = addComponentToMenuItem(menu, dynamicImport)
 
   const rootRoutes: RouteRecordRaw = {

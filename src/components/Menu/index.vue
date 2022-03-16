@@ -1,6 +1,6 @@
 <template>
   <div class="menu-tree">
-    <el-menu>
+    <el-menu :router="true">
       <template v-for="menuItem in menuData" :key="menuItem.path">
         <RenderMenu :menuItem="menuItem" />
       </template>

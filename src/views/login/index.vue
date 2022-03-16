@@ -6,13 +6,14 @@
 
 <script lang="ts" setup>
   import { useRouter, useRoute } from 'vue-router'
+  // import { router as rootRouter } from '/@/router'
+  // import { routerBeforeEach } from '/@/router/beforeEach'
   const router = useRouter()
   const route = useRoute()
   const handleClick = () => {
     console.log(1)
     console.log(router)
     console.log(route)
-
     router.push('/chart')
     console.log(2)
   }

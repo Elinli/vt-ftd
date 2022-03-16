@@ -2,6 +2,11 @@
   //========================================
   //============== 编辑器 ===================
   //========================================
+  "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "workbench.colorTheme": "GitHub Dark Default",
+  "editor.smoothScrolling": true,
   // 光标的动画样式
   "editor.cursorBlinking": "phase",
   // 光标是否启用平滑插入的动画
