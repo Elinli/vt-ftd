@@ -20,29 +20,139 @@ body,
   height: calc(100vh - 0px);
 }
 
-$p4: 4px;
-$p8: 8px;
-$p12: 12px;
-$p14: 14px;
-$p16: 16px;
-$p24: 24px;
-$p28: 28px;
-$p32: 32px;
-$p40: 40px;
-$p48: 48px;
-$p64: 64px;
-$p96: 96px;
+// x轴滚动条
+@mixin xScoll {
+  height: 100%;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 5px;
+  }
+  /*正常情况下滑块的样式*/
+  &::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+  /*鼠标悬浮在该类指向的控件上时滑块的样式*/
+  &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+    background-color: rgb(192, 192, 192);
+    border-radius: 3px;
+  }
 
-$r2: 2px;
-$r4: 4px;
-$r8: 8px;
-$rp50: 50%;
+  /*鼠标悬浮在滑块上时滑块的样式*/
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(124, 124, 124);
+  }
 
-$font-family: 'Open Sans', sans-serif;
-$font-size: $p14;
+  /*正常时候的滚动条轨道*/
+  &::-webkit-scrollbar-track {
+    visibility: hidden;
+  }
+  /*鼠标悬浮在该类指向的控件上时滑块的样式*/
+  &:hover::-webkit-scrollbar-track {
+    visibility: visible;
+    background-color: rgb(249, 249, 249);
+  }
+  /*鼠标悬浮在滚动条上的滚动条轨道*/
+  &::-webkit-scrollbar-track:hover {
+    visibility: visible;
+    background-color: rgb(249, 249, 249);
+  }
+}
 
-$primary-color: #00a0e9;
-$warning-color: #ffc107;
-$error-color: #f44336;
-$success-color: #4caf50;
-$disabled-color: #e0e0e0;
+// y轴滚动条
+@mixin yScoll {
+  height: 100%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 6px;
+  }
+  /*正常情况下滑块的样式*/
+  &::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+  /*鼠标悬浮在该类指向的控件上时滑块的样式*/
+  &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+    background-color: rgb(192, 192, 192);
+    border-radius: 3px;
+  }
+
+  /*鼠标悬浮在滑块上时滑块的样式*/
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(124, 124, 124);
+  }
+
+  /*正常时候的滚动条轨道*/
+  &::-webkit-scrollbar-track {
+    visibility: hidden;
+  }
+  /*鼠标悬浮在该类指向的控件上时滑块的样式*/
+  &:hover::-webkit-scrollbar-track {
+    visibility: visible;
+    background-color: rgb(249, 249, 249);
+  }
+  /*鼠标悬浮在滚动条上的滚动条轨道*/
+  &::-webkit-scrollbar-track:hover {
+    visibility: visible;
+    background-color: rgb(249, 249, 249);
+  }
+}
+
+// flex布局
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin alignCenter {
+  display: flex;
+  align-items: center;
+}
+
+@mixin justifyCenter {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flexAround {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin flexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin boxSizing {
+  box-sizing: border-box;
+}
+
+@mixin boxShadow {
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+@mixin borderRadius {
+  border-radius: 2px;
+}
+
+@mixin border {
+  border: 1px solid var(--el-border-color-base);
+}

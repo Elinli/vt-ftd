@@ -6,7 +6,7 @@
         <!-- <el-aside width="200px">Aside</el-aside> -->
         <Aside />
         <el-main>
-          <div class="page-router-view"> <router-view /> </div>
+          <div class="router-view"> <router-view /> </div>
         </el-main>
       </el-container>
     </el-container>
@@ -32,22 +32,34 @@
 <style scoped lang="scss">
   .common-layout {
     background: $primary-color;
+    flex-grow: 1;
+    display: flex;
   }
 
-  .common-layout .el-main {
-    background-color: #e9eef3;
-    color: var(--el-text-color-primary);
+  .common-layout {
+    .el-main {
+      background-color: #e9eef3;
+      color: var(--el-text-color-primary);
+      padding: $p16;
+      display: flex;
+      @include boxSizing;
+    }
+    .el-aside {
+      display: flex;
+    }
   }
 
   .common-layout > .el-container {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
   }
-  .page-router-view {
+  .router-view {
     background: white;
-    border: 1px solid #ccc;
+    @include border;
+    @include borderRadius;
     display: flex;
     flex-grow: 1;
-    height: 100%;
+    @include boxShadow;
   }
 </style>

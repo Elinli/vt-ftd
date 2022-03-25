@@ -13,4 +13,6 @@ export interface Menu {
   level: number
   component?: any
   parent?: string | undefined | null
+  redirect?: string | undefined | null
+  type?: string | undefined | null
 }

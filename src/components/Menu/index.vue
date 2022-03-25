@@ -1,6 +1,6 @@
 <template>
   <div class="menu-tree">
-    <el-menu :router="true">
+    <el-menu :router="true" :default-active="route.path">
       <template v-for="menuItem in menuData" :key="menuItem.path">
         <RenderMenu :menuItem="menuItem" />
       </template>
@@ -9,7 +9,9 @@
 </template>
 <script lang="ts" setup>
   import { reactive } from 'vue'
+  import { useRoute, useRouter } from 'vue-router'
   import RenderMenu from './RenderMenu.vue'
+  import { Menu } from '/@/interface/app'
   const menu = [
     {
       name: 'chart',
@@ -46,6 +48,7 @@
       uniqueId: 2,
       level: 1,
     },
+
     {
       name: 'employ',
       path: '/employ',
@@ -58,8 +61,13 @@
       level: 1,
     },
   ]
-  let menuData = reactive([])
-  menuData = menu
+  let menuData = reactive([]) as Menu[]
+  menuData = menu as Array<Menu>
+  const router = useRouter()
+  const route = useRoute()
+  console.log('route', route)
+  console.log('router', router)
+  console.log('menuData', menuData)
 </script>
 
 <style scoped lang="scss"></style>

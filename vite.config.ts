@@ -46,7 +46,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         charset: false,
-        additionalData: '@import "./src/assets/default/common.scss";',
+        additionalData: `@import "./src/assets/default/baseProperty.scss";@import "./src/assets/default/common.scss";`,
       },
     },
   },

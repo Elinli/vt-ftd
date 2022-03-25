@@ -1,14 +1,23 @@
 <template>
-  <el-header><h1>hello v3</h1></el-header>
+  <el-header>
+    <img
+      src="https://img2.baidu.com/it/u=847814196,756963172&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=468"
+      alt=""
+    />
+    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+  </el-header>
 </template>
 
 <script lang="ts" setup></script>
 
 <style scoped lang="scss">
   .el-header {
-    background-color: $error-color;
+    padding: 0;
+    background-color: $white;
     color: var(--el-text-color-primary);
-    text-align: center;
-    line-height: 60px;
+    @include flexBetween;
+    .el-avatar {
+      margin-right: $p12;
+    }
   }
 </style>

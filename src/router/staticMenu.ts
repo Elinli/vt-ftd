@@ -1,4 +1,7 @@
-export const staticMenu = [
+import { Menu } from '../interface/app'
+
+// menu for static pages
+const staticMenu: Array<Menu> = [
   {
     name: 'chart',
     path: '/chart',
@@ -6,6 +9,7 @@ export const staticMenu = [
     parent: 'root',
     icon: 'icon',
     redirect: '/echart',
+    type: 'M',
     children: [
       {
         name: 'chartIndex',
@@ -46,3 +50,17 @@ export const staticMenu = [
     level: 1,
   },
 ]
+
+// whole menu include button and link and menu
+const wholeMenu: Array<Menu> = []
+
+// menu for role
+const roleMenu = {
+  admin: [],
+  ordinary: [],
+  root: [],
+  manager: [],
+  chairman: [],
+}
+
+export { wholeMenu, roleMenu, staticMenu }
