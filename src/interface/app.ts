@@ -1,3 +1,5 @@
+import { RouteRecordRedirectOption } from 'vue-router'
+
 export interface IconProps {
   [icon: string]: string
 }
@@ -13,6 +15,6 @@ export interface Menu {
   level: number
   component?: any
   parent?: string | undefined | null
-  redirect?: string | undefined | null
+  redirect?: RouteRecordRedirectOption | undefined
   type?: string | undefined | null
 }

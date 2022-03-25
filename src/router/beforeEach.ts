@@ -2,8 +2,7 @@ import { Router } from 'vue-router'
 import { useAppStore } from '/@/store/app'
 const store = useAppStore()
 function isTokenEffective() {
-  const token = store.$state.authority
-  return token
+  return store.$state.authority
 }
 export const routerBeforeEach = (router: Router) => {
   router.beforeEach(async (to, _from, next) => {
