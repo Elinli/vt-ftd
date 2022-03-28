@@ -18,6 +18,14 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
+    path: '/:pathMatch(.*)*',
+    name: 'unknown',
+    meta: {
+      title: '未知页面',
+    },
+    component: () => import('/src/views/errorpage/index.vue'),
+  },
+  {
     path: '/404',
     name: '404',
     meta: {

@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts" setup>
-  import { defineProps } from 'vue'
   import RenderMenu from './RenderMenu.vue'
   import ItemContent from './ItemContent.vue'
   defineProps({

@@ -1,6 +1,7 @@
 import { App, createVNode } from 'vue'
 import * as Icons from '@icon-park/vue-next'
 import { IconProps } from '../../interface/app'
+console.log(Icons)
 
 export const useIcon = () => {
   const setupIcons = (app: App) => {

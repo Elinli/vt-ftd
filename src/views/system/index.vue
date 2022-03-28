@@ -1,5 +1,5 @@
 <template>
-  <div class="work-bench"> 工作台 </div>
+  <div class="sys-manage"> 系统管理 </div>
 </template>
 
 <script lang="ts" setup></script>

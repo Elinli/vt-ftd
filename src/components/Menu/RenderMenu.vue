@@ -6,7 +6,6 @@
 </template>
 
 <script lang="ts" setup>
-  import { defineProps } from 'vue'
   import SubMenu from './SubMenu.vue'
   import MenuItem from './MenuItem.vue'
   defineProps({

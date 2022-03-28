@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, defineProps, toRaw } from 'vue'
+  import { computed, toRaw } from 'vue'
   import { useIcon } from '/@/hooks/components/useIcons'
   const { Icon } = useIcon()
   const props = defineProps({
