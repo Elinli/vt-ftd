@@ -9,6 +9,7 @@ import ElementPlus from 'unplugin-element-plus/vite'
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
 }
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -47,6 +48,20 @@ export default defineConfig({
       scss: {
         charset: false,
         additionalData: `@import "./src/assets/default/baseProperty.scss";@import "./src/assets/default/common.scss";`,
+      },
+    },
+  },
+  server: {
+    proxy: {
+      '/206-user': {
+        target: 'http://206-manage-lung.dev.cechealth.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/user/, ''),
+      },
+      '/cus': {
+        target: 'https://www.taobao.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/cus/, ''),
       },
     },
   },

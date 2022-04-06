@@ -9,19 +9,37 @@
   // import { router as rootRouter } from '/@/router'
   // import { routerBeforeEach } from '/@/router/beforeEach'
   import { useAppStore } from '/@/store/app'
+  import { login } from '/@/api/account'
   const router = useRouter()
   const route = useRoute()
   const store = useAppStore()
+
   const handleClick = () => {
-    console.log(1)
     console.log(router)
     console.log(route)
+
+    login({
+      credential: 'dDEyMzQ1Ng==',
+      identifier: 'lungtest1',
+      loginMode: 2,
+      orgCodeX: null,
+    })
+      .then((res: any) => {
+        console.log(res)
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
     store.$patch({
       authority: 'adhajsdhakjfhsdgksh',
     })
-    router.push('/chart')
-    console.log(2)
+    // router.push('/chart')
   }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .login {
+    @include flexCenter;
+    flex-grow: 1;
+  }
+</style>
