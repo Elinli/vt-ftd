@@ -4,36 +4,25 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-  import { useRouter, useRoute } from 'vue-router'
-  // import { router as rootRouter } from '/@/router'
-  // import { routerBeforeEach } from '/@/router/beforeEach'
+<script lang="ts" setup name="login">
   import { useAppStore } from '/@/store/app'
-  import { login } from '/@/api/account'
-  const router = useRouter()
-  const route = useRoute()
-  const store = useAppStore()
-
+  import dayjs from 'dayjs'
+  const appStore = useAppStore()
   const handleClick = () => {
-    console.log(router)
-    console.log(route)
-
-    login({
-      credential: 'dDEyMzQ1Ng==',
-      identifier: 'lungtest1',
+    const params: {
+      credential: string
+      identifier: string
+      loginMode: number
+      orgCodeX: null | string | undefined
+    } = {
+      credential: 'YWRtaW4xMjM0NTY=',
+      identifier: 'lg007',
       loginMode: 2,
       orgCodeX: null,
-    })
-      .then((res: any) => {
-        console.log(res)
-      })
-      .catch((err: any) => {
-        console.log(err)
-      })
-    store.$patch({
-      authority: 'adhajsdhakjfhsdgksh',
-    })
-    // router.push('/chart')
+    }
+    console.log(dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'))
+
+    appStore.fetchAuthority(params)
   }
 </script>
 

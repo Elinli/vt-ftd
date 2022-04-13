@@ -1,32 +1,9 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { beforeRequestHook, CreateAxiosOptions } from './config'
+import { disposeConfig, CreateAxiosOptions } from './config'
 import { ContentTypeEnum } from '/@/enums/httpEnum'
+import { RequestOptions } from '/@/interface/fetch'
 import { Result, UploadFileParams } from '/@/types/axios'
-export interface RequestOptions {
-  // Splicing request parameters to url
-  joinParamsToUrl?: boolean
-  // Format request parameter time
-  formatDate?: boolean
-  // Whether to process the request result
-  isTransformResponse?: boolean
-  // Whether to return native response headers
-  // For example: use this attribute when you need to get the response headers
-  isReturnNativeResponse?: boolean
-  // Whether to join url
-  joinPrefix?: boolean
-  // Interface address, use the default apiUrl if you leave it blank
-  apiUrl?: string
-  // 请求拼接路径
-  urlPrefix?: string
-  // Error message prompt type
-  // errorMessageMode?: ErrorMessageMode
-  // Whether to add a timestamp
-  joinTime?: boolean
-  ignoreCancelToken?: boolean
-  // Whether to send token in header
-  withToken?: boolean
-  independentApiUrl?: boolean
-}
+
 class EncapsulationRequest {
   private axiosInstance: AxiosInstance
   private readonly options: CreateAxiosOptions
@@ -67,7 +44,7 @@ class EncapsulationRequest {
     console.log('requestOptions', requestOptions)
 
     const opt = { ...requestOptions, ...options }
-    const conf = beforeRequestHook(config, opt)
+    const conf = disposeConfig(config, opt)
     console.log('conf', conf)
 
     return new Promise((resolve, reject) => {
@@ -115,7 +92,6 @@ class EncapsulationRequest {
           })
           return
         }
-
         formData.append(key, params.data![key])
       })
     }

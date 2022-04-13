@@ -25,8 +25,8 @@ export const routerBeforeEach = (router: Router) => {
           if (!store.$state.authority) {
             // set authority
 
-            await store.fetchAuthority({ url: '/api/authority', method: 'GET' })
-            await store.fetchMenu({ url: '/api/authority', method: 'GET' })
+            // await store.fetchAuthority({ url: '/api/authority', method: 'GET' })
+            // await store.fetchMenu({ url: '/api/authority', method: 'GET' })
             // 注册路由
             // it's a hack func,avoid bug
             next({ ...to, replace: true })

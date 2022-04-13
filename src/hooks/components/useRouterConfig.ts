@@ -1,5 +1,6 @@
 import { Router, RouteRecordRaw } from 'vue-router'
 import { Menu } from '../../interface/app'
+
 export function useRouterConfig(router: Router, menu: Array<Menu>) {
   const dynamicImport = import.meta.glob('../../views/**/*.{vue,tsx}')
   const resultMenu: RouteRecordRaw[] = addComponentToMenuItem(menu, dynamicImport)
@@ -12,7 +13,6 @@ export function useRouterConfig(router: Router, menu: Array<Menu>) {
     component: () => import('../../components/Layouts/index.vue'),
     children: resultMenu,
   }
-
   router.addRoute(rootRoutes)
 }
 

@@ -7,4 +7,13 @@ export const useUserStore = defineStore({
   }),
   getters: {},
   actions: {},
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: 'user',
+        storage: localStorage,
+      },
+    ],
+  },
 })

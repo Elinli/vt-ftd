@@ -1,12 +1,34 @@
 <template>
   <el-header>
-    <img :src="headerBackground" alt="" class="img-header" />
-    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+    <div class="left-header">
+      <el-button>login</el-button>
+    </div>
+    <div class="right-header">
+      <img :src="headerBackground" alt="" class="img-header" />
+      <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+    </div>
   </el-header>
 </template>
 
 <script lang="ts" setup>
   import headerBackground from '/@/assets/images/header-background.png'
+  import { useAppStore } from '/@/store/app'
+  const appStore = useAppStore()
+  const params: {
+    credential: string
+    identifier: string
+    loginMode: number
+    orgCodeX: null | string | undefined
+  } = {
+    credential: 'YWRtaW4xMjM0NTY=',
+    identifier: 'lg007',
+    loginMode: 2,
+    orgCodeX: null,
+  }
+  // window.addEventListener('beforeunload', () => {
+  //   appStore.$reset()
+  // })
+  if (!appStore.authorityGetters) appStore.fetchAuthority(params)
 </script>
 
 <style scoped lang="scss">
@@ -17,11 +39,14 @@
     z-index: 9;
     box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
     @include flexBetween;
-    .img-header {
-      height: 60px;
-    }
-    .el-avatar {
-      margin-right: $p12;
+    .right-header {
+      @include alignCenter;
+      .img-header {
+        height: 60px;
+      }
+      .el-avatar {
+        margin-right: $p12;
+      }
     }
   }
 </style>

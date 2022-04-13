@@ -15,8 +15,7 @@
       default: () => ({}),
     },
   })
-  let iteme = toRaw(toRaw(props).item)
-  console.log(iteme)
+  let iteme = toRaw(props).item
 
   const getIcon = computed(() => iteme.icon)
   const getTitleName = computed(() => iteme.title)

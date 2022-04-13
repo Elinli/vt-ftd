@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios'
 import { is } from '../common'
-import { RequestOptions } from './request'
 import { ContentTypeEnum, RequestEnum } from '/@/enums/httpEnum'
+import { RequestOptions } from '/@/interface/fetch'
 
 export interface CreateAxiosOptions extends AxiosRequestConfig {
   authenticationScheme?: string
@@ -20,10 +20,10 @@ export const instanceConfig = {
   },
 }
 
-export const beforeRequestHook = (config: AxiosRequestConfig, options: RequestOptions) => {
+export const disposeConfig = (config: AxiosRequestConfig, options: RequestOptions) => {
   const { apiUrl = null, joinPrefix, urlPrefix, independentApiUrl } = options
 
-  console.log('beforeRequestHook config', config)
+  console.log('disposeConfig config', config)
   console.log('options', options)
 
   if (joinPrefix) {

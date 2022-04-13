@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
 }
@@ -24,6 +25,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     ElementPlus(),
+    VueSetupExtend(),
   ],
   resolve: {
     alias: [

@@ -1,45 +1,64 @@
 import { Menu } from './../interface/app'
 import { defineStore } from 'pinia'
-import { RequestParams } from '/@/interface/fetch'
 import { staticMenu } from '/@/router/staticMenu'
-
+import { login } from '../api/account'
+import router from '../router'
+interface AppState {
+  menu: Menu[]
+  authority: null | string | undefined
+  routes: any
+}
 export const useAppStore = defineStore({
   id: 'app',
-  state: () => ({
-    menu: [] as Menu[],
-    authority: '',
-  }),
-  getters: {},
+  state: () => {
+    return {
+      menu: [] as Menu[],
+      authority: '',
+      routes: null,
+    } as AppState
+  },
+  getters: {
+    authorityGetters: (state) => state.authority,
+    menuGetters: (state) => state.menu,
+    routesGetters: (state) => state.routes,
+  },
   actions: {
-    async fetchAuthority(params: RequestParams) {
-      try {
-        console.log(3)
-
-        console.log(params)
-
-        this.authority = 'authorized'
-      } catch (error) {
-        console.log(33)
-
-        // let the form component display the error
-        return error
+    async fetchAuthority(params: unknown) {
+      if (!params) {
+        this.authority = null
+        return
       }
+      login(params)
+        .then(async (res: any) => {
+          // 登陆成功获取权限菜单
+          console.log(res)
+          const { userInfo, token } = res
+          this.authority = token
+          console.log(userInfo, token)
+        })
+        .catch((err: any) => {
+          console.log(err)
+        })
+        .finally(() => {
+          this.authority = 'token'
+          this.menu = staticMenu
+
+          router.push('/chart')
+        })
     },
-    async fetchMenu(params: RequestParams) {
-      try {
-        console.log(4, params)
 
-        const result = await Promise.resolve(staticMenu)
-        console.log(5)
-
-        console.log({ result })
-        // this.menu = result
-      } catch (error) {
-        console.log(44)
-
-        // let the form component display the error
-        return error
-      }
+    changeRoutes(params: any) {
+      this.routes = params
     },
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: 'app',
+        storage: localStorage,
+        paths: ['menu', 'authority', 'routes'],
+      },
+    ],
   },
 })
