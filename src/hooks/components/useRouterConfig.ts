@@ -1,7 +1,7 @@
 import { Router, RouteRecordRaw } from 'vue-router'
 import { Menu } from '../../interface/app'
 
-export function useRouterConfig(router: Router, menu: Array<Menu>) {
+export function afterLoginSetupRoutes(router: Router, menu: Array<Menu>) {
   const dynamicImport = import.meta.glob('../../views/**/*.{vue,tsx}')
   const resultMenu: RouteRecordRaw[] = addComponentToMenuItem(menu, dynamicImport)
 
@@ -22,9 +22,7 @@ export function addComponentToMenuItem(
 ): Array<RouteRecordRaw> {
   return menu.map((item) => {
     const { children, path, ...rest } = item
-    console.log(`../../views${path}/index.vue`)
-
-    const route: RouteRecordRaw = {
+    const routeRecord: RouteRecordRaw = {
       path,
       meta: {
         title: rest.title,
@@ -37,8 +35,8 @@ export function addComponentToMenuItem(
           : dynamicImport[`../../views${path}/index.vue`],
     }
     if (children && children.length) {
-      route.children = addComponentToMenuItem(children, dynamicImport) as [RouteRecordRaw]
+      routeRecord.children = addComponentToMenuItem(children, dynamicImport) as [RouteRecordRaw]
     }
-    return route
+    return routeRecord
   })
 }

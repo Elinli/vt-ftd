@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import { useRouterConfig } from '../hooks/components/useRouterConfig'
+import { afterLoginSetupRoutes } from '../hooks/components/useRouterConfig'
 import { Menu } from '../interface/app'
 import { staticMenu } from './staticMenu'
 import { routerBeforeEach } from './beforeEach'
@@ -61,6 +61,6 @@ export const router = createRouter({
 
 routerBeforeEach(router)
 
-useRouterConfig(router, staticMenu as Menu[])
+afterLoginSetupRoutes(router, staticMenu as Menu[])
 
 export default router
