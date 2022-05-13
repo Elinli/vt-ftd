@@ -4,7 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver, AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 function pathResolve(dir: string) {
@@ -17,12 +17,13 @@ export default defineConfig({
     vue(),
     vueJsx(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
-      imports: ['vue'],
+      resolvers: [ElementPlusResolver(), AntDesignVueResolver()],
+      imports: ['vue', 'vue-router'],
     }),
 
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(), AntDesignVueResolver()],
+      dts: true,
     }),
     ElementPlus(),
     VueSetupExtend(),

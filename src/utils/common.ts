@@ -21,8 +21,8 @@ const depthClone = (origin: any, target = new WeakMap()) => {
 const is = (val: any, type: String): Boolean =>
   Object.prototype.toString.call(val) === `[object ${type}]`
 
-const flatDepthArrByKey = (arr: Array<any>, key: any = 'children'): Array<any> => {
-  if (!is(arr, 'Array')) throw new Error('flatStaticMenu: arr must be Array')
+const depthFlatArrayByKey = (arr: Array<any>, key: any = 'children'): Array<any> => {
+  if (!is(arr, 'Array')) throw new Error('depthFlatArrayByKey: array must be an Array')
   const resultArray = []
   const tempArray = depthClone(arr)
   while (tempArray.length) {
@@ -36,4 +36,4 @@ const flatDepthArrByKey = (arr: Array<any>, key: any = 'children'): Array<any> =
   }
   return resultArray
 }
-export { is, flatDepthArrByKey, depthClone }
+export { is, depthFlatArrayByKey, depthClone }

@@ -10,12 +10,12 @@ interface AppState {
 }
 export const useAppStore = defineStore({
   id: 'app',
-  state: () => {
+  state: (): AppState => {
     return {
       menu: [] as Menu[],
       authority: '',
       routes: null,
-    } as AppState
+    }
   },
   getters: {
     authorityGetters: (state) => state.authority,
@@ -42,7 +42,6 @@ export const useAppStore = defineStore({
         .finally(() => {
           this.authority = 'token'
           this.menu = staticMenu
-
           router.push('/chart')
         })
     },

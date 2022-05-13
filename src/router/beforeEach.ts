@@ -1,8 +1,8 @@
 import { Router } from 'vue-router'
 import { useAppStore } from '/@/store/app'
 import { staticMenu } from '/@/router/staticMenu'
-import { flatDepthArrByKey } from '/@/utils/common'
-const flatStaticMenu = flatDepthArrByKey(staticMenu).map((item) => item.path)
+import { depthFlatArrayByKey } from '/@/utils/common'
+const flatStaticMenu = depthFlatArrayByKey(staticMenu).map((item) => item.path)
 console.log(flatStaticMenu)
 
 const store = useAppStore()
